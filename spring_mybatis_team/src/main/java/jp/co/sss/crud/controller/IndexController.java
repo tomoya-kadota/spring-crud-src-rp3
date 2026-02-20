@@ -1,8 +1,5 @@
 package jp.co.sss.crud.controller;
 
-import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import jp.co.sss.crud.form.LoginForm;
+import jp.co.sss.crud.service.LoginResult;
 import jp.co.sss.crud.service.LoginService;
 
 @Controller
@@ -49,22 +49,34 @@ public class IndexController {
 			Model model) {
 
 		//TODO 入力エラーがある場合、result.hasErrorsメソッドを呼びだしindex.htmlへ戻る
-		if (false) {
+		//author 原
+		if (result.hasErrors()) {
+
+			return "index";
 		}
 
 		//TODO loginServiceのメソッドを呼びだし、LoginResult型のオブジェクトへ代入する
+		//author 原
+		LoginResult loginResult = loginService.execute(loginForm);
 
 		//TODO loginResult.isLoginの結果がtrueの場合、ログイン成功でセッションに"user"という名前でセッションにユーザーの情報を登録する
-		if (true) {
+		//author 原
+		if (loginResult.isLogin()) {
 
 			//TODO セッションにuser登録
+			//author 原
+			session.setAttribute("user", loginResult.getLoginUser());
 
 			// 一覧へリダイレクト
 			return "redirect:/list";
+
 			//TODO loginResult.isLoginの結果がfalseの場合、loginResult.getErrorMsgメソッドを呼びだし、modelスコープに登録する
+			//author 原
 		} else {//ログイン失敗時
 
 			//TODO loginResult.getErrorMsgを呼び出し、メッセージをmodelスコープに登録
+			//author 原
+			model.addAttribute("errMessage", loginResult.getErrorMsg());
 
 			return "index";
 		}
@@ -74,6 +86,7 @@ public class IndexController {
 	@RequestMapping(path = "/logout", method = RequestMethod.GET)
 	public String logout() {
 		//TODO セッションの破棄
+		session.invalidate();
 
 		//index.htmlへ遷移
 		return "redirect:/";
