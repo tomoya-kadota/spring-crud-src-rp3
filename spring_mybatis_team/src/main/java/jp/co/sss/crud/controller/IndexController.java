@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import jp.co.sss.crud.entity.Employee;
 import jp.co.sss.crud.form.LoginForm;
 import jp.co.sss.crud.service.LoginResult;
 import jp.co.sss.crud.service.LoginService;
@@ -31,6 +32,11 @@ public class IndexController {
 	 */
 	@RequestMapping(path = "/", method = RequestMethod.GET)
 	public String index(@ModelAttribute LoginForm loginForm) {
+		Employee loginUser = (Employee) session.getAttribute("user");
+		if (loginUser != null) {
+			return "redirect:/list";
+		}
+
 		session.invalidate();
 		return "index";
 	}
