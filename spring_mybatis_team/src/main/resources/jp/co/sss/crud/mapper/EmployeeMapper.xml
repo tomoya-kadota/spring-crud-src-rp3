@@ -8,7 +8,8 @@
 		resultType="jp.co.sss.crud.entity.Employee">
 		SELECT *
 		FROM Employee e
-		INNER JOIN Department d ON e.dept_id = d.dept_id
+		INNER JOIN Department d ON e.dept_id
+		= d.dept_id
 		ORDER BY e.emp_id ASC
 	</select>
 
@@ -17,7 +18,8 @@
 		resultType="jp.co.sss.crud.entity.Employee">
 		SELECT *
 		FROM Employee e
-		INNER JOIN Department d ON e.dept_id = d.dept_id
+		INNER JOIN Department d ON e.dept_id
+		= d.dept_id
 		WHERE emp_id = #{empId}
 	</select>
 
@@ -27,8 +29,17 @@
 	</select>
 
 	<!-- TODO 部署ID検索 -->
+	<!-- author DANG -->
 	<select id="findByDepartmentDeptIdOrderByEmpId"
 		resultType="jp.co.sss.crud.entity.Employee">
+		SELECT *
+		FROM Employee e
+		INNER JOIN Department d ON e.dept_id =
+		d.dept_id
+		<if test="deptId != null and deptId != ''">
+			WHERE d.dept_id = #{deptId}
+		</if>
+		ORDER BY e.dept_id
 	</select>
 
 	<!-- TODO ログイン用のIDとパスワード検索 -->
@@ -38,7 +49,7 @@
 		SELECT *
 		FROM Employee
 		WHERE emp_id = #{empId}
-			AND emp_pass = #{empPass}
+		AND emp_pass = #{empPass}
 	</select>
 
 
@@ -46,7 +57,7 @@
 	<insert id="insert"
 		parameterType="jp.co.sss.crud.entity.Employee" useGeneratedKeys="true"
 		keyProperty="empId">
-		
+
 		INSERT INTO employee
 		(
 		emp_pass,emp_name,gender,address,birthday,authority,dept_id
@@ -56,7 +67,8 @@
 	</insert>
 
 	<!-- TODO IDによる単一変更 -->
-	<update id="update"	parameterType="jp.co.sss.crud.entity.Employee">
+	<update id="update"
+		parameterType="jp.co.sss.crud.entity.Employee">
 
 	</update>
 
