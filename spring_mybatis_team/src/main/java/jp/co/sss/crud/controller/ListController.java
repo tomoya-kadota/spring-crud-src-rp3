@@ -51,11 +51,22 @@ public class ListController {
 	 * @param empName 検索対象の社員名
 	 * @param model モデル
 	 * @return 遷移先のビュー
+	 * @author 中尾
 	 */
 	@RequestMapping(path = "/list/empName", method = RequestMethod.GET)
 	public String findByEmpName(String empName, Model model) {
+
+		// 検索実行
+		var employees = searchForEmployeesByEmpNameService.execute(empName);
+
 		//検索した社員情報をmodelに追加
 		model.addAttribute("employees", searchForEmployeesByEmpNameService.execute(empName));
+
+		// 0件の場合はその旨を表示
+		if (employees.isEmpty()) {
+			model.addAttribute("message", "該当する社員情報がありません。");
+		}
+
 		return "list/list";
 	}
 

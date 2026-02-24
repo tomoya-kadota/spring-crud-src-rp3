@@ -24,32 +24,26 @@
 	</select>
 
 	<!-- TODO 社員名検索 -->
+	<!-- author 中尾 -->
 	<select id="findByEmpNameContainingOrderByEmpId"
-		resultType="jp.co.sss.crud.entity.Employee">
-	</select>
-
-	<!-- TODO 部署ID検索 -->
-	<!-- author DANG -->
-	<select id="findByDepartmentDeptIdOrderByEmpId"
 		resultType="jp.co.sss.crud.entity.Employee">
 		SELECT *
 		FROM Employee e
-		INNER JOIN Department d ON e.dept_id =
-		d.dept_id
-		<if test="deptId != null and deptId != ''">
-			WHERE d.dept_id = #{deptId}
-		</if>
-		ORDER BY e.dept_id
+		INNER JOIN Department d ON e.dept_id
+		= d.dept_id
+		WHERE e.emp_name LIKE CONCAT('%', #{empName}, '%')
+		ORDER BY
+		e.emp_id ASC
+	</select>
+
+	<!-- TODO 部署ID検索 -->
+	<select id="findByDepartmentDeptIdOrderByEmpId"
+		resultType="jp.co.sss.crud.entity.Employee">
 	</select>
 
 	<!-- TODO ログイン用のIDとパスワード検索 -->
-	<!-- author 原 -->
 	<select id="findByEmpIdAndEmpPass"
 		resultType="jp.co.sss.crud.entity.Employee">
-		SELECT *
-		FROM Employee
-		WHERE emp_id = #{empId}
-		AND emp_pass = #{empPass}
 	</select>
 
 
@@ -67,20 +61,9 @@
 	</insert>
 
 	<!-- TODO IDによる単一変更 -->
-	<!-- author 角田 -->
 	<update id="update"
 		parameterType="jp.co.sss.crud.entity.Employee">
-		UPDATE employee
-		SET
-		emp_pass = #{empPass},
-		emp_name = #{empName},
-		gender = #{gender},
-		address = #{address},
-		birthday = #{birthday},
-		authority = #{authority},
-		dept_id = #{deptId}
-		WHERE
-		emp_id = #{empId}
+
 	</update>
 
 	<!-- TODO IDによる単一削除 -->
