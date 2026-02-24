@@ -130,7 +130,7 @@ public class UpdateController {
 		// TODO ログイン中のユーザーが自分の情報を更新した場合、セッション情報も更新
 		if (!loginUser.equals(employeeForm)) {
 			// TODO セッションに保存されているユーザーの社員名を更新
-			session.setAttribute("user", employeeForm);
+			session.setAttribute("user",employeeForm);
 		}
 
 		// 更新完了画面へリダイレクト
