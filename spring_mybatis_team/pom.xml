@@ -10,7 +10,9 @@
 	</parent>
 	<groupId>jp.co.sss.crud</groupId>
 	<artifactId>spring_crud_answer</artifactId>
+	<!-- jarファイルの名前で-->
 	<version>0.0.1-SNAPSHOT</version>
+	<!-- ここにバージョンを追記-->
 	<name>spring_crud_answer</name>
 	<description>Demo project for Spring Boot</description>
 		<packaging>jar</packaging>
