@@ -126,11 +126,11 @@ public class UpdateController {
 		// TODO 社員情報を更新する
 		updateEmployeeService.execute(employee);
 		// TODO セッションからユーザー情報を取得
-		Object loginUser = session.getAttribute("user");
+		Employee loginUser = (Employee)session.getAttribute("user");
 		// TODO ログイン中のユーザーが自分の情報を更新した場合、セッション情報も更新
-		if (!loginUser.equals(employeeForm)) {
+		if (loginUser.getEmpId().equals(employee.getEmpId()) && !loginUser.equals(employee)) {
 			// TODO セッションに保存されているユーザーの社員名を更新
-			session.setAttribute("user",employeeForm);
+			session.setAttribute("user",employee);
 		}
 
 		// 更新完了画面へリダイレクト
