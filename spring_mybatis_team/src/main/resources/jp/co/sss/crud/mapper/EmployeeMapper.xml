@@ -67,8 +67,10 @@
 	</update>
 
 	<!-- TODO IDによる単一削除 -->
+	<!-- author 劉 -->
 	<delete id="delete" parameterType="int">
-
+		DELETE FROM employee
+		WHERE emp_id = #{empId}
 	</delete>
 
 

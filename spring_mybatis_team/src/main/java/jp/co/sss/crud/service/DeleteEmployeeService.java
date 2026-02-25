@@ -16,10 +16,10 @@ public class DeleteEmployeeService {
 	/**
 	 * 社員削除
 	 * 
+	 * @author 劉
 	 * @return 社員エンティティ
 	 */
-	public Boolean execute(Integer deptId) {
-		return mapper.delete(deptId);
+	public Boolean delete(Integer empId) {
+		return mapper.delete(empId);
 	}
-
 }
