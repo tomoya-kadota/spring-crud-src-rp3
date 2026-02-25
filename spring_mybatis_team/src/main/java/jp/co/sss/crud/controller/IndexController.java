@@ -49,6 +49,7 @@ public class IndexController {
 	 * @param session 
 	 * @param model リクエストスコープの操作
 	 * @return 遷移先ビュー
+	 * @author 中尾
 	 */
 	@RequestMapping(path = "/login", method = RequestMethod.POST)
 	public String login(@Valid @ModelAttribute LoginForm loginForm, BindingResult result, HttpSession session,
@@ -70,7 +71,9 @@ public class IndexController {
 		if (loginResult.isLogin()) {
 
 			//TODO セッションにuser登録
+
 			//author 原
+
 			session.setAttribute("user", loginResult.getLoginUser());
 
 			// 一覧へリダイレクト

@@ -21,7 +21,7 @@ public class SearchForEmployeesByEmpNameService {
 	 * 
 	 * @param empName 社員名
 	 * @return 社員エンティティ
-	 * @author author 中尾
+	 * @author 中尾
 	 */
 	public List<Employee> execute(String empName) {
 
