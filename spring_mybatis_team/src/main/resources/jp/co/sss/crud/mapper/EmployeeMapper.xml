@@ -29,9 +29,11 @@
 		resultType="jp.co.sss.crud.entity.Employee">
 		SELECT *
 		FROM Employee e
-		INNER JOIN Department d ON e.dept_id = d.dept_id
+		INNER JOIN Department d ON e.dept_id
+		= d.dept_id
 		WHERE e.emp_name LIKE CONCAT('%', #{empName}, '%')
-		ORDER BY e.emp_id ASC
+		ORDER BY
+		e.emp_id ASC
 	</select>
 
 	<!-- TODO 部署ID検索 -->
@@ -40,8 +42,27 @@
 	</select>
 
 	<!-- TODO ログイン用のIDとパスワード検索 -->
+	<!-- author 中尾 -->
 	<select id="findByEmpIdAndEmpPass"
 		resultType="jp.co.sss.crud.entity.Employee">
+		SELECT
+		e.emp_id AS empId,
+		e.emp_pass AS empPass,
+		e.emp_name AS
+		empName,
+		e.gender AS gender,
+		e.address AS address,
+		e.birthday AS
+		birthday,
+		e.authority AS authority,
+		e.dept_id AS deptId,
+		d.dept_name AS
+		deptName
+		FROM Employee e
+		INNER JOIN Department d ON e.dept_id =
+		d.dept_id
+		WHERE e.emp_id = #{empId}
+		AND e.emp_pass = #{empPass}
 	</select>
 
 

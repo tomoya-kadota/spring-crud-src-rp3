@@ -1,12 +1,18 @@
 package jp.co.sss.crud.form;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class LoginForm {
 
 	//TODO フィールドに必要なアノテーションを付与しバリデーションを行うこと
+	//@author 中尾
 	/** 社員ID */
+	@NotNull
 	private Integer empId;
 
 	/** パスワード */
+	@NotBlank
 	private String empPass;
 
 	/**
