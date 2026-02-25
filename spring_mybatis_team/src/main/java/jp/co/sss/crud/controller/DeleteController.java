@@ -49,13 +49,13 @@ public class DeleteController {
 		// TODO 社員IDに紐づく社員情報を検索し、Employee型の変数に代入する
 		//author 劉
 		Employee deleteEmp = searchForEmployeesByEmpIdService.execute(empId);
-		
+
 		// TODO 取得した社員情報をモデルに追加する
 		model.addAttribute("employee",deleteEmp);
-		
+
 		// TODO 取得した社員の部署名をモデルに追加する
 		model.addAttribute("deptName", deleteEmp.getDeptName());
-		
+
 		// 削除確認画面のビュー名を返す
 		return "delete/delete_check";
 	}
@@ -70,9 +70,14 @@ public class DeleteController {
 	@RequestMapping(path = "/delete/complete", method = RequestMethod.POST)
 	public String completeDelete(Integer empId) {
 		// TODO 取得した社員IDをもとに社員情報を削除する
-		deleteEmployeeService.delete(empId);
+		//
+		Boolean deleteFlg = deleteEmployeeService.delete(empId);
+		if(!deleteFlg) {
+			return "delete/delete_check";
+		}
 		//  削除完了画面へリダイレクトする
 		return "redirect:/delete/complete";
+		
 	}
 
 	/**
