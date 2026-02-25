@@ -49,13 +49,13 @@ public class DeleteController {
 		// TODO 社員IDに紐づく社員情報を検索し、Employee型の変数に代入する
 		//author 劉
 		Employee deleteEmp = searchForEmployeesByEmpIdService.execute(empId);
-
+		
 		// TODO 取得した社員情報をモデルに追加する
 		model.addAttribute("employee",deleteEmp);
-
+		
 		// TODO 取得した社員の部署名をモデルに追加する
 		model.addAttribute("deptName", deleteEmp.getDeptName());
-
+		
 		// 削除確認画面のビュー名を返す
 		return "delete/delete_check";
 	}
