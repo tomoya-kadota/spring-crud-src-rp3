@@ -70,6 +70,7 @@ public class AdminAccountCheckFilter extends HttpFilter {
 		if (accessFlg == false) {
 			//TODO  レスポンス情報を取得
 			//TODO  ログイン画面へリダイレクト
+			session.invalidate();
 			response.sendRedirect(request.getContextPath() + "/");
 			
 			//処理を終了
