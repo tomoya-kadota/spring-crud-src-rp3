@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>jp.co.sss.crud</groupId>
-	<artifactId>spring_crud_answer</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>spring_mybatis_team</artifactId>
+	<version>ex1-ap1-EC2-web-server</version>
 	<name>spring_crud_answer</name>
 	<description>Demo project for Spring Boot</description>
 		<packaging>jar</packaging>
