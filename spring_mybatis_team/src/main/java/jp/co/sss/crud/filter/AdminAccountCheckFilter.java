@@ -62,7 +62,7 @@ public class AdminAccountCheckFilter extends HttpFilter {
 		if (loginUserAuthority == 2) {
 			accessFlg = true;
 			//TODO  ログインユーザ自身(セッションユーザのIDと変更リクエストの社員IDが一致)の画面はアクセス許可
-		} else if (loginUserEmpId == updateTargetEmpId) {
+		} else if (loginUserEmpId.equals(updateTargetEmpId)) {
 			accessFlg = true;
 		}
 
@@ -70,7 +70,7 @@ public class AdminAccountCheckFilter extends HttpFilter {
 		if (accessFlg == false) {
 			//TODO  レスポンス情報を取得
 			//TODO  ログイン画面へリダイレクト
-			response.sendRedirect("/spring_crud/");
+			response.sendRedirect(request.getContextPath() + "/");
 			
 			//処理を終了
 			return;
