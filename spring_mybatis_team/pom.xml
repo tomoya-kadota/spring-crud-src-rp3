@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>jp.co.sss.crud</groupId>
 	<artifactId>spring_mybatis_team</artifactId>
-	<version>ex1-ap1-EC2-web-server</version>
+	<version>ex1-ap2-EC2-web-server</version>
 	<name>spring_crud_answer</name>
 	<description>Demo project for Spring Boot</description>
 		<packaging>jar</packaging>
